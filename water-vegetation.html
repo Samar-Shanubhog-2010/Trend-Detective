@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Trend Detective climate signal intelligence dashboard" />
+    <title>Trend Detective | Climate Signals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3L1P5QmP0rJ0Zq8vS7QqL1a9VYp8M=" crossorigin="" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-meta">
+        <span class="live-dot"></span>
+        <span>LIVE SIGNAL MONITOR</span>
+      </div>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Switch to dark contrast theme" aria-pressed="false">◐</button>
+    </header>
+
+    <main class="dashboard-shell">
+      <aside class="context-panel">
+        <h1>Following<br /><em>nature's flow.</em></h1>
+        <p class="intro">A focused view of rainfall, water availability, and vegetation changing across the planet.</p>
+
+      </aside>
+
+      <section class="visuals">
+        <div class="content-heading">
+          <div>
+            <div class="eyebrow">WATER + VEGETATION / GLOBAL VIEW</div>
+            <h2>Two systems, <span>one planet.</span></h2>
+          </div>
+        </div>
+
+        <article class="signal-card water-card">
+          <div class="card-header">
+            <div class="signal-title">
+              <span class="signal-icon water-icon">⌁</span>
+              <div><div class="eyebrow">SIGNAL A</div><h3>Water & rainfall</h3></div>
+            </div>
+            <div class="metric">
+              <span class="metric-value" id="waterMetric">—</span>
+              <span class="metric-unit">% vs baseline</span>
+            </div>
+          </div>
+          <div class="map-wrap">
+            <div id="waterMap" class="signal-map" aria-label="Water and rainfall levels map"></div>
+            <div class="map-overlay"><span>WATER AVAILABILITY</span><div class="gradient water-gradient"></div><div class="legend-labels"><span>lower</span><span>higher</span></div></div>
+            <div class="map-year" id="waterMapYear">2026</div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-heading"><span>GLOBAL RAINFALL INDEX</span><span class="chart-current" id="waterChartValue">—</span></div>
+            <div class="chart-canvas"><canvas id="waterChart"></canvas></div>
+          </div>
+          <div class="slider-row">
+            <span class="slider-year">1980</span><input id="waterYear" type="range" min="1980" max="2026" value="2026" step="1" aria-label="Water and rainfall year" /><span class="slider-year" id="waterSliderYear">2026</span>
+          </div>
+        </article>
+
+        <article class="signal-card vegetation-card">
+          <div class="card-header">
+            <div class="signal-title">
+              <span class="signal-icon vegetation-icon">♧</span>
+              <div><div class="eyebrow">SIGNAL B</div><h3>Forest & vegetation</h3></div>
+            </div>
+            <div class="metric">
+              <span class="metric-value" id="vegetationMetric">—</span>
+              <span class="metric-unit">% vs baseline</span>
+            </div>
+          </div>
+          <div class="map-wrap">
+            <div id="vegetationMap" class="signal-map" aria-label="Forest and vegetation density map"></div>
+            <div class="map-overlay"><span>VEGETATION DENSITY</span><div class="gradient vegetation-gradient"></div><div class="legend-labels"><span>depleted</span><span>dense</span></div></div>
+            <div class="map-year" id="vegetationMapYear">2026</div>
+          </div>
+          <div class="chart-wrap">
+            <div class="chart-heading"><span>GLOBAL VEGETATION INDEX</span><span class="chart-current" id="vegetationChartValue">—</span></div>
+            <div class="chart-canvas"><canvas id="vegetationChart"></canvas></div>
+          </div>
+          <div class="slider-row">
+            <span class="slider-year">1980</span><input id="vegetationYear" type="range" min="1980" max="2026" value="2026" step="1" aria-label="Forest and vegetation year" /><span class="slider-year" id="vegetationSliderYear">2026</span>
+          </div>
+        </article>
+      </section>
+
+      <aside class="navigation-panel">
+        <div class="eyebrow">NAVIGATION</div>
+        <a class="back-link" href="#" id="backLink"><span>←</span> Back to landing</a>
+        <div class="nav-divider"></div>
+        <div class="eyebrow">METRICS</div>
+        <nav class="graph-nav" aria-label="Other graphs">
+          <a href="temperature-ozone.html"><span class="nav-index">01</span><span>Temperature and Ozone</span><span>↗</span></a>
+          <a href="water-vegetation.html" class="active"><span class="nav-index">02</span><span>Water and Vegetation</span><span>↗</span></a>
+          <a href="aqi-pollution.html"><span class="nav-index">03</span><span>AQI and Pollution</span><span>↗</span></a>
+        </nav>
+        <div class="nav-footer"><span class="pulse-line"></span><span>EXPLORING <strong>03</strong> SIGNALS</span></div>
+      </aside>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="app.js"></script>
+  </body>
+</html>
