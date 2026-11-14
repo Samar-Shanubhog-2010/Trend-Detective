@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AQI and pollution dashboard" />
+    <title>Trend Detective | AQI and Pollution</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar"><div class="topbar-meta"><span class="live-dot"></span><span>LIVE SIGNAL MONITOR</span></div><button class="icon-button" id="themeToggle" type="button" aria-label="Switch to dark contrast theme" aria-pressed="false">◐</button></header>
+    <main class="dashboard-shell">
+      <aside class="context-panel">
+        <h1>Reading the<br /><em>air we share.</em></h1>
+        <p class="intro">A focused view of air quality and pollution signals changing the shape of our future.</p>
+      </aside>
+      <section class="visuals">
+        <div class="content-heading"><div><div class="eyebrow">AIR QUALITY / GLOBAL VIEW</div><h2>Cleaner air, <span>healthier lives.</span></h2></div></div>
+        <article class="signal-card aqi-card">
+          <div class="card-header"><div class="signal-title"><span class="signal-icon water-icon">◎</span><div><div class="eyebrow">SIGNAL A</div><h3>Air quality index</h3></div></div><div class="metric"><span class="metric-value" id="aqiMetric">—</span><span class="metric-unit">AQI score</span></div></div>
+          <div class="map-wrap"><div id="aqiMap" class="signal-map" aria-label="Air quality index map"></div><div class="map-overlay"><span>AQI INTENSITY</span><div class="gradient aqi-gradient"></div><div class="legend-labels"><span>good</span><span>hazardous</span></div></div><div class="map-year" id="aqiMapYear">2026</div></div>
+          <div class="chart-wrap"><div class="chart-heading"><span>GLOBAL AQI TREND</span><span class="chart-current" id="aqiChartValue">—</span></div><div class="chart-canvas"><canvas id="aqiChart"></canvas></div></div>
+          <div class="slider-row"><span class="slider-year">1980</span><input id="aqiYear" type="range" min="1980" max="2026" value="2026" aria-label="AQI year" /><span class="slider-year" id="aqiSliderYear">2026</span></div>
+        </article>
+        <article class="signal-card pollution-card">
+          <div class="card-header"><div class="signal-title"><span class="signal-icon vegetation-icon">◒</span><div><div class="eyebrow">SIGNAL B</div><h3>Atmospheric pollution</h3></div></div><div class="metric"><span class="metric-value" id="pollutionMetric">—</span><span class="metric-unit">PM2.5 µg/m³</span></div></div>
+          <div class="map-wrap"><div id="pollutionMap" class="signal-map" aria-label="Atmospheric pollution map"></div><div class="map-overlay"><span>POLLUTION INTENSITY</span><div class="gradient pollution-gradient"></div><div class="legend-labels"><span>lower</span><span>higher</span></div></div><div class="map-year" id="pollutionMapYear">2026</div></div>
+          <div class="chart-wrap"><div class="chart-heading"><span>GLOBAL PM2.5 INDEX</span><span class="chart-current" id="pollutionChartValue">—</span></div><div class="chart-canvas"><canvas id="pollutionChart"></canvas></div></div>
+          <div class="slider-row"><span class="slider-year">1980</span><input id="pollutionYear" type="range" min="1980" max="2026" value="2026" aria-label="Pollution year" /><span class="slider-year" id="pollutionSliderYear">2026</span></div>
+        </article>
+      </section>
+      <aside class="navigation-panel"><div class="eyebrow">NAVIGATION</div><a class="back-link" href="#"><span>←</span> Back to landing</a><div class="nav-divider"></div><div class="eyebrow">METRICS</div><nav class="graph-nav" aria-label="Metrics"><a href="temperature-ozone.html"><span class="nav-index">01</span><span>Temperature and Ozone</span><span>↗</span></a><a href="water-vegetation.html"><span class="nav-index">02</span><span>Water and Vegetation</span><span>↗</span></a><a href="aqi-pollution.html" class="active"><span class="nav-index">03</span><span>AQI and Pollution</span><span>↗</span></a></nav><div class="nav-footer"><span class="pulse-line"></span><span>EXPLORING <strong>03</strong> SIGNALS</span></div></aside>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="aqi-pollution.js"></script>
+  </body>
+</html>
