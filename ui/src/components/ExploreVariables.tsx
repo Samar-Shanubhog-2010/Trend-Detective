@@ -22,6 +22,39 @@ const investigations: InvestigationPanelData[] = [
         date: "January 4, 2022",
         sourceUrl: "https://images.nasa.gov/details/PIA24139",
       },
+      {
+        imageUrl: "/images/nasa/antarctic-ozone-hole-2009.jpg",
+        alt: "NASA satellite map of the 2009 Antarctic ozone hole over the South Pole",
+        title: "Antarctic Ozone Hole, 2009",
+        nasaId: "GSFC_20171208_Archive_e002226",
+        description:
+          "NASA satellite observations map ozone concentrations over Antarctica as the 2009 ozone hole develops.",
+        credit: "NASA Goddard Space Flight Center",
+        date: "September 10, 2009",
+        sourceUrl: "https://images.nasa.gov/details/GSFC_20171208_Archive_e002226",
+      },
+      {
+        imageUrl: "/images/nasa/antarctic-ozone-hole-2010.jpg",
+        alt: "NASA OMI satellite map of ozone concentrations over Antarctica in 2010",
+        title: "Antarctic Ozone Hole, 2010",
+        nasaId: "GSFC_20171208_Archive_e001962",
+        description:
+          "NASA Aura's Ozone Monitoring Instrument measured stratospheric ozone over Antarctica on September 12, 2010.",
+        credit: "NASA Earth Observatory / Ozone Watch",
+        date: "September 12, 2010",
+        sourceUrl: "https://images.nasa.gov/details/GSFC_20171208_Archive_e001962",
+      },
+      {
+        imageUrl: "/images/nasa/antarctic-ozone-hole-2014.jpg",
+        alt: "NASA AIRS visualization of the Antarctic ozone hole forming over the South Pole in 2014",
+        title: "Ozone Hole Formation over the South Pole",
+        nasaId: "PIA20664",
+        description:
+          "NASA Aqua AIRS data visualize Antarctic ozone-hole formation and evolution from September to December 2014.",
+        credit: "NASA/JPL-Caltech",
+        date: "September - December 2014",
+        sourceUrl: "https://images.nasa.gov/details/PIA20664",
+      },
     ],
   },
   {
@@ -107,6 +140,28 @@ const investigations: InvestigationPanelData[] = [
         credit: "NASA/JPL-Caltech",
         date: "November 2016",
         sourceUrl: "https://images.nasa.gov/details/PIA21100",
+      },
+      {
+        imageUrl: "/images/nasa/eastern-china-haze.jpg",
+        alt: "NASA Terra satellite image of dense pollution haze over northern China, including Beijing and Hebei",
+        title: "Haze over Eastern China",
+        nasaId: "GSFC_20171208_Archive_e001269",
+        description:
+          "NASA Terra MODIS captured thick haze over northern China on December 23, 2013, obscuring Beijing and Hebei.",
+        credit: "NASA/GSFC/Jeff Schmaltz/MODIS Land Rapid Response Team",
+        date: "December 23, 2013",
+        sourceUrl: "https://images.nasa.gov/details/GSFC_20171208_Archive_e001269",
+      },
+      {
+        imageUrl: "/images/nasa/northeastern-china-haze.jpg",
+        alt: "NASA Aqua satellite image of haze and smog around Harbin in northeastern China",
+        title: "Haze in Northeastern China",
+        nasaId: "GSFC_20171208_Archive_e001358",
+        description:
+          "NASA Aqua MODIS observed pollution haze around Harbin, where air quality reached hazardous levels in October 2013.",
+        credit: "NASA/GSFC/Jeff Schmaltz/MODIS Land Rapid Response Team",
+        date: "October 21, 2013",
+        sourceUrl: "https://images.nasa.gov/details/GSFC_20171208_Archive_e001358",
       },
     ],
   },
