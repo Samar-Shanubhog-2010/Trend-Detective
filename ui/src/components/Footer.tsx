@@ -1,4 +1,16 @@
-import { ArrowRight, ExternalLink, Github, Globe2, Satellite } from "lucide-react";
+import {
+  ArrowRight,
+  CloudRain,
+  ExternalLink,
+  Factory,
+  Github,
+  Globe2,
+  Shield,
+  Satellite,
+  Thermometer,
+  Trees,
+  Wind,
+} from "lucide-react";
 
 const teamMembers: { name: string; githubUsername: string }[] = [
   { name: "[Team member name]", githubUsername: "[GitHub username]" },
@@ -15,31 +27,43 @@ const scienceResources = [
     title: "Earth temperature & atmosphere",
     organization: "NASA Earth Science",
     url: "https://science.nasa.gov/earth-science/",
+    theme: "temperature",
+    icon: Thermometer,
   },
   {
     title: "Ozone monitoring",
     organization: "NASA Ozone Watch",
     url: "https://ozonewatch.gsfc.nasa.gov/",
+    theme: "ozone",
+    icon: Shield,
   },
   {
     title: "Water & precipitation",
     organization: "Global Precipitation Measurement",
     url: "https://gpm.nasa.gov/",
+    theme: "water",
+    icon: CloudRain,
   },
   {
     title: "Vegetation & forests",
     organization: "NASA Earth Observatory",
     url: "https://earthobservatory.nasa.gov/features/GlobalGarden",
+    theme: "vegetation",
+    icon: Trees,
   },
   {
     title: "Air quality & composition",
     organization: "NASA Atmospheric Composition",
     url: "https://airquality.gsfc.nasa.gov/",
+    theme: "air",
+    icon: Wind,
   },
   {
     title: "Satellite pollution monitoring",
     organization: "NASA TEMPO Mission",
     url: "https://tempo.si.edu/",
+    theme: "pollution",
+    icon: Factory,
   },
 ];
 
@@ -175,13 +199,18 @@ export default function Footer() {
                 href={resource.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="science-resource"
+                className={`science-resource science-resource--${resource.theme}`}
               >
                 <span>
+                  <span className="science-resource-icon" aria-hidden="true">
+                    <resource.icon size={17} />
+                  </span>
+                </span>
+                <span className="science-resource-copy">
                   <span className="science-resource-title">{resource.title}</span>
                   <span className="science-resource-org">{resource.organization}</span>
                 </span>
-                <ExternalLink size={16} className="shrink-0 text-cyan-200" />
+                <ExternalLink size={16} className="science-resource-external" />
               </a>
             ))}
           </div>

@@ -31,13 +31,13 @@ export default function Hero() {
         <span className="shooting-star shooting-star-two" />
         <span className="shooting-star shooting-star-three" />
         <div className="satellite-orbit satellite-orbit-one">
-          <Satellite className="hero-satellite satellite-one" size={18} />
+          <Satellite className="hero-satellite satellite-one" size={23} />
         </div>
         <div className="satellite-orbit satellite-orbit-two">
-          <Satellite className="hero-satellite satellite-two" size={14} />
+          <Satellite className="hero-satellite satellite-two" size={18} />
         </div>
         <div className="satellite-orbit satellite-orbit-three">
-          <Satellite className="hero-satellite satellite-three" size={12} />
+          <Satellite className="hero-satellite satellite-three" size={16} />
         </div>
       </div>
 

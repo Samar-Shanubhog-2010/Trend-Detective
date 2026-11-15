@@ -11,6 +11,14 @@ const investigations: InvestigationPanelData[] = [
       "Earth's atmosphere and surface reveal changing temperature patterns. Satellite observations help scientists study atmospheric temperatures and monitor ozone distribution across the planet.",
     kind: "temperature",
     query: "NASA Earth temperature map ozone atmosphere satellite",
+    images: [
+      {
+        src: "/images/nasa/temperature-anomalies.jpg",
+        alt: "NASA AIRS global atmospheric temperature anomaly map",
+        title: "AIRS Temperature Anomalies",
+        nasaId: "PIA24139",
+      },
+    ],
   },
   {
     id: "water-rainfall-vegetation",
@@ -20,6 +28,20 @@ const investigations: InvestigationPanelData[] = [
       "Water availability, rainfall and vegetation are closely connected. NASA observations help scientists examine precipitation patterns, drought conditions and changes in vegetation across different ecosystems.",
     kind: "water",
     query: "NASA global precipitation rainfall vegetation forest satellite",
+    images: [
+      {
+        src: "/images/nasa/rainfall-wetlands.jpg",
+        alt: "NASA Terra satellite view of the Kafue Flats wetland after seasonal rainfall",
+        title: "Floodwaters Renew Zambia Kafue Wetland",
+        nasaId: "PIA04371",
+      },
+      {
+        src: "/images/nasa/amazon-vegetation.jpg",
+        alt: "NASA Terra satellite imagery showing dense vegetation and cleared fields in Mato Grosso, Brazil",
+        title: "Mato Grosso, Brazil",
+        nasaId: "PIA11420",
+      },
+    ],
   },
   {
     id: "air-quality-pollution",
@@ -29,6 +51,14 @@ const investigations: InvestigationPanelData[] = [
       "Satellite instruments help scientists observe aerosols and atmospheric gases, track pollution patterns and understand how air composition changes across regions.",
     kind: "air",
     query: "NASA TEMPO air quality atmospheric aerosols pollution satellite",
+    images: [
+      {
+        src: "/images/nasa/air-quality-delhi.jpg",
+        alt: "NASA MISR satellite view of severe air pollution over New Delhi, India",
+        title: "Severe Air Pollution in New Delhi",
+        nasaId: "PIA21100",
+      },
+    ],
   },
 ];
 

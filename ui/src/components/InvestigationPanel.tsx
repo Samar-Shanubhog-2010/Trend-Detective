@@ -10,6 +10,12 @@ export interface InvestigationPanelData {
   description: string;
   kind: "temperature" | "water" | "air";
   query: string;
+  images: {
+    src: string;
+    alt: string;
+    title: string;
+    nasaId: string;
+  }[];
 }
 
 const panelTheme = {
@@ -77,7 +83,25 @@ export default function InvestigationPanel({
 
         <div className="investigation-panel-art">
           <EnvironmentalIllustration kind={investigation.kind} />
-          <span className="illustration-disclaimer">ILLUSTRATIVE • NO LIVE DATA</span>
+          <div className="panel-imagery" role="group" aria-label="NASA satellite images">
+            {investigation.images.map((image) => (
+              <a
+                className="panel-image-tile"
+                key={image.nasaId}
+                href={`https://images.nasa.gov/details/${image.nasaId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${image.title} — open NASA image details in a new tab`}
+              >
+                <img src={image.src} alt={image.alt} loading="lazy" />
+                <span className="panel-image-caption">
+                  <span>{image.title}</span>
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </span>
+              </a>
+            ))}
+          </div>
+          <span className="illustration-disclaimer">NASA SATELLITE IMAGERY</span>
         </div>
       </article>
 
