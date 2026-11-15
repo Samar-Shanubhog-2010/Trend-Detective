@@ -10,7 +10,7 @@ const investigations: InvestigationPanelData[] = [
     description:
       "Earth's atmosphere and surface reveal changing temperature patterns. Satellite observations help scientists study atmospheric temperatures and monitor ozone distribution across the planet.",
     kind: "temperature",
-    dashboardUrl: "/Temp/temperature-ozone.html",
+    dashboardUrl: "https://trend-detective-three.vercel.app/temperature-ozone.html",
     images: [
       {
         imageUrl: "/images/nasa/temperature-anomalies.jpg",
@@ -65,7 +65,7 @@ const investigations: InvestigationPanelData[] = [
     description:
       "Water availability, rainfall and vegetation are closely connected. NASA observations help scientists examine precipitation patterns, drought conditions and changes in vegetation across different ecosystems.",
     kind: "water",
-    dashboardUrl: "/water-vegetation.html",
+    dashboardUrl: "https://trend-detective-three.vercel.app/water-vegetation.html",
     images: [
       {
         imageUrl: "/images/nasa/rainfall-wetlands.jpg",
@@ -131,7 +131,7 @@ const investigations: InvestigationPanelData[] = [
     description:
       "Satellite instruments help scientists observe aerosols and atmospheric gases, track pollution patterns and understand how air composition changes across regions.",
     kind: "air",
-    dashboardUrl: "/aqi-pollution.html",
+    dashboardUrl: "https://trend-detective-three.vercel.app/aqi-pollution.html",
     images: [
       {
         imageUrl: "/images/nasa/air-quality-delhi.jpg",

@@ -2,10 +2,9 @@ import { useState, type MouseEvent } from "react";
 import { ArrowRight } from "lucide-react";
 
 export default function UnderstandingPlanet() {
-  const [messageVisible, setMessageVisible] = useState(false);
   const [buttonMotion, setButtonMotion] = useState({ x: 0, y: 0, scale: 1 });
 
-  const handleMouseMove = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleMouseMove = (event: MouseEvent<HTMLAnchorElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     setButtonMotion({
       x: (event.clientX - (rect.left + rect.width / 2)) * 0.1,
@@ -34,27 +33,20 @@ export default function UnderstandingPlanet() {
           Every unusual pattern raises a question.
           <br className="hidden sm:block" /> Every question begins an investigation.
         </h2>
-        <button
-          type="button"
-          onClick={() => setMessageVisible((visible) => !visible)}
+        <a
+          href="https://data-detectives-earth-trends.ai.studio/"
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setButtonMotion({ x: 0, y: 0, scale: 1 })}
           onPointerDown={() => setButtonMotion((motion) => ({ ...motion, scale: 0.97 }))}
           onPointerUp={() => setButtonMotion((motion) => ({ ...motion, scale: 1.04 }))}
           className="electric-cta group mt-12"
-          aria-expanded={messageVisible}
           style={{
             transform: `translate(${buttonMotion.x}px, ${buttonMotion.y}px) scale(${buttonMotion.scale})`,
           }}
         >
           DIVE INTO THE INVESTIGATION
           <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-        </button>
-        {messageVisible && (
-          <p className="mt-5 text-sm text-cyan-100/80" role="status">
-            The investigation experience will connect here when it is ready.
-          </p>
-        )}
+        </a>
       </div>
     </section>
   );

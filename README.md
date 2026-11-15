@@ -17,6 +17,12 @@ Then open `http://localhost:8000`.
 - [`ANALYSIS_AGENT_GUIDE.md`](./ANALYSIS_AGENT_GUIDE.md) — rules for building the analysis pipeline and using the processed data contract
 - [`Temp/TEMPERATURE_OZONE_WORKFLOW.md`](./Temp/TEMPERATURE_OZONE_WORKFLOW.md) — explanation of the temperature + ozone dashboard architecture, data flow, and chart logic
 
+## React landing page and investigation game
+
+The React/Vite landing page lives in [`ui/`](./ui/). Its “Dive into the Investigation” button opens the integrated game at `/game`. The game source comes from [Game-Nisac](https://github.com/prahladnk/Game-Nisac), imported with its author's permission.
+
+Run the app locally with `cd ui && npm run dev`; create a production build with `cd ui && npm run build`.
+
 ## Data integration
 
 Set `DATA_URL` at the top of `app.js` to an external JSON endpoint. The endpoint should return the shape documented in [`sample-data.json`](./sample-data.json):

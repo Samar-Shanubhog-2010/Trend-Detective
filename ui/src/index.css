@@ -487,7 +487,7 @@ footer[id] {
 }
 
 .dashboard-launch {
-  background: linear-gradient(120deg, rgba(17,119,238,0.58), rgba(36,85,238,0.54));
+  background: linear-gradient(120deg, #1177ee, #244fe0);
   border-color: rgba(191, 219, 254, 0.72);
 }
 
@@ -498,8 +498,15 @@ footer[id] {
 .dashboard-launch:hover,
 .gallery-launch:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.14);
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.dashboard-launch:hover {
+  background: linear-gradient(120deg, #0d66d2, #1e40c9);
+}
+
+.gallery-launch:hover {
+  background: rgba(255,255,255,0.14);
 }
 
 .investigation-panel-art {

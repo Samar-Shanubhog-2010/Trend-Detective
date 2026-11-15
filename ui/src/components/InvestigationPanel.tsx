@@ -89,7 +89,6 @@ export default function InvestigationPanel({
 
         <div className="investigation-panel-art">
           <EnvironmentalIllustration kind={investigation.kind} />
-          <span className="illustration-disclaimer">ILLUSTRATIVE • NO LIVE DATA</span>
         </div>
       </article>
 
