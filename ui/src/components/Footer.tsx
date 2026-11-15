@@ -1,10 +1,8 @@
 import {
-  ArrowRight,
   CloudRain,
   ExternalLink,
   Factory,
   Github,
-  Globe2,
   Shield,
   Satellite,
   Thermometer,
@@ -13,14 +11,12 @@ import {
 } from "lucide-react";
 
 const teamMembers: { name: string; githubUsername: string }[] = [
-  { name: "[Team member name]", githubUsername: "[GitHub username]" },
-  { name: "[Team member name]", githubUsername: "[GitHub username]" },
-  { name: "[Team member name]", githubUsername: "[GitHub username]" },
-  { name: "[Team member name]", githubUsername: "[GitHub username]" },
-  { name: "[Team member name]", githubUsername: "[GitHub username]" },
+  { name: "Kishan A Bharadwaj", githubUsername: "kishanabharadwaj" },
+  { name: "Sathwik Sastry", githubUsername: "Sathwik-Sastry" },
+  { name: "Samar Shanubhog", githubUsername: "Samar-Shanubhog-2010" },
+  { name: "Prahlad Kulkarni", githubUsername: "prahladnk" },
+  { name: "Vaishnavi Tara", githubUsername: "tara-vaishnavi" },
 ];
-
-const REPOSITORY_URL = "";
 
 const scienceResources = [
   {
@@ -67,10 +63,6 @@ const scienceResources = [
   },
 ];
 
-function isConfigured(value: string) {
-  return value.length > 0 && !value.includes("[");
-}
-
 export default function Footer() {
   return (
     <footer
@@ -101,79 +93,43 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="mb-16 grid gap-10 lg:grid-cols-[0.85fr_1.5fr]">
+        <div className="mb-16">
           <section className="rounded-[28px] border border-cyan-200/15 bg-slate-950/60 p-6 sm:p-8">
             <div className="mb-5 flex items-center gap-3">
-              <Globe2 className="h-5 w-5 text-cyan-300" />
+              <Github className="h-5 w-5 text-cyan-300" />
               <h3 className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
-                Project repository
+                GitHub Team Members
               </h3>
             </div>
-
-            {isConfigured(REPOSITORY_URL) ? (
-              <a
-                href={REPOSITORY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="repository-cta"
-              >
-                EXPLORE OUR GITHUB REPOSITORY
-                <ArrowRight size={18} />
-              </a>
-            ) : (
-              <button
-                type="button"
-                className="repository-cta repository-cta-disabled"
-                disabled
-                title="Add the project repository URL to enable this link"
-              >
-                EXPLORE OUR GITHUB REPOSITORY
-                <ArrowRight size={18} />
-              </button>
-            )}
-
-            <p className="mt-4 text-xs leading-relaxed text-slate-500">
-              The repository link will be enabled once the project URL is added.
-            </p>
-          </section>
-
-          <section className="rounded-[28px] border border-white/10 bg-slate-950/60 p-6 sm:p-8">
-            <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-cyan-100">
-              Team profiles
-            </h3>
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {teamMembers.map((member, index) => {
-                const profileUrl = isConfigured(member.githubUsername)
-                  ? `https://github.com/${member.githubUsername}`
-                  : null;
-
-                return (
-                  <div key={`${member.name}-${index}`} className="team-profile">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-400/10">
-                      <Github size={17} className="text-cyan-200" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium text-white">{member.name}</p>
-                      <p className="mt-0.5 truncate text-xs text-slate-400">{member.githubUsername}</p>
-                    </div>
-                    {profileUrl ? (
-                      <a
-                        href={profileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="team-profile-link"
-                        aria-label={`Open ${member.name}'s GitHub profile`}
-                      >
-                        <ExternalLink size={15} />
-                      </a>
-                    ) : (
-                      <span className="team-profile-pending" aria-label="Profile link pending">
-                        <ExternalLink size={15} />
-                      </span>
-                    )}
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {teamMembers.map((member) => (
+                <div key={member.githubUsername} className="team-profile">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-400/10">
+                    <Github size={17} className="text-cyan-200" />
                   </div>
-                );
-              })}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-white">{member.name}</p>
+                    <a
+                      href={`https://github.com/${member.githubUsername}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-0.5 block truncate text-xs text-cyan-200 hover:text-white"
+                      aria-label={`Open ${member.name}'s GitHub profile`}
+                    >
+                      {member.githubUsername}
+                    </a>
+                  </div>
+                  <a
+                    href={`https://github.com/${member.githubUsername}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="team-profile-link"
+                    aria-label={`Open ${member.name}'s GitHub profile in a new tab`}
+                  >
+                    <ExternalLink size={15} />
+                  </a>
+                </div>
+              ))}
             </div>
           </section>
         </div>

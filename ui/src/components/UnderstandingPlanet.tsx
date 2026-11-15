@@ -34,7 +34,7 @@ export default function UnderstandingPlanet() {
           <br className="hidden sm:block" /> Every question begins an investigation.
         </h2>
         <a
-          href="/game"
+          href="https://data-detectives-earth-trends.ai.studio/"
           onMouseMove={handleMouseMove}
           onMouseLeave={() => setButtonMotion({ x: 0, y: 0, scale: 1 })}
           onPointerDown={() => setButtonMotion((motion) => ({ ...motion, scale: 0.97 }))}
