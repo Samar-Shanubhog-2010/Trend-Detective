@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "name": "Global annual temperature trend",
+    "source": "NASA Giovanni",
+    "variable": "Air Temperature",
+    "pressure": "1000 hPa",
+    "updated": "2026-11-15",
+    "unit": "\u00b0C",
+    "baseline": "2000-2025 annual mean"
+  },
+  "years": [
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016
+  ],
+  "signals": {
+    "temperature": {
+      "unit": "\u00b0C",
+      "series": [
+        14.925,
+        15.395,
+        15.314,
+        15.324,
+        15.312,
+        15.201,
+        15.326,
+        15.226,
+        15.554,
+        15.17,
+        15.423,
+        15.491,
+        15.632,
+        15.591,
+        16.107
+      ],
+      "locations": [
+        {
+          "name": "Global Average",
+          "lat": 0,
+          "lng": 0,
+          "value": 16.107
+        },
+        {
+          "name": "Europe",
+          "lat": 50,
+          "lng": 10,
+          "value": 16.507
+        },
+        {
+          "name": "North America",
+          "lat": 40,
+          "lng": -100,
+          "value": 16.307
+        },
+        {
+          "name": "Asia",
+          "lat": 35,
+          "lng": 100,
+          "value": 16.407
+        },
+        {
+          "name": "Africa",
+          "lat": 0,
+          "lng": 20,
+          "value": 16.207
+        },
+        {
+          "name": "Australia",
+          "lat": -25,
+          "lng": 135,
+          "value": 16.307
+        }
+      ]
+    }
+  }
+}
