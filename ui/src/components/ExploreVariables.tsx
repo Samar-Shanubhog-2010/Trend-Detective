@@ -55,6 +55,28 @@ const investigations: InvestigationPanelData[] = [
         sourceUrl: "https://svs.gsfc.nasa.gov/4285/",
       },
       {
+        imageUrl: "/images/nasa/amazon-river-mouth.jpg",
+        alt: "NASA Terra satellite image of the Amazon River flowing east across Brazil toward the Atlantic Ocean",
+        title: "Mouth of the Amazon",
+        nasaId: "PIA02643",
+        description:
+          "NASA Terra imagery follows the Amazon River east across Brazil to its mouth at the Atlantic Ocean.",
+        credit: "NASA/JPL",
+        date: "February 7, 2001",
+        sourceUrl: "https://images.nasa.gov/details/PIA02643",
+      },
+      {
+        imageUrl: "/images/nasa/amazon-manaus-rivers.jpg",
+        alt: "NASA Terra satellite image of the Rio Negro and Solimoes rivers joining near Manaus, Brazil",
+        title: "Where Two Rivers Become the Amazon",
+        nasaId: "PIA02642",
+        description:
+          "Near Manaus, the pale Solimoes and dark Rio Negro converge to form the Amazon River.",
+        credit: "NASA/JPL",
+        date: "January 24, 2001",
+        sourceUrl: "https://images.nasa.gov/details/PIA02642",
+      },
+      {
         imageUrl: "/images/nasa/amazon-vegetation.jpg",
         alt: "NASA Terra satellite imagery showing dense vegetation and cleared fields in Mato Grosso, Brazil",
         title: "Mato Grosso, Brazil",
