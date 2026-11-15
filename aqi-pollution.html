@@ -25,14 +25,14 @@
           <div class="map-wrap"><div id="aqiMap" class="signal-map" aria-label="Air quality index map"></div><div class="map-overlay"><span>AQI INTENSITY</span><div class="gradient aqi-gradient"></div><div class="legend-labels"><span>good</span><span>hazardous</span></div></div><div class="map-year" id="aqiMapYear">2026</div></div> 
           <div class="chart-wrap"><div class="chart-heading"><span>AQI TREND</span><span class="chart-current" id="aqiChartValue">—</span></div><div class="chart-canvas"><canvas id="aqiChart" data-aqi-api="https://air-quality-api.open-meteo.com/v1/air-quality"></canvas></div></div>
           <div class="slider-row"><span class="slider-year">2022</span><input id="aqiYear" type="range" min="2022" max="2026" value="2026" aria-label="AQI year" /><span class="slider-year" id="aqiSliderYear">2026</span></div>
-          <div class="data-note">*Data before 2022 currently unavailable</div>
+          <div class="data-note">*[Data before 2022 currently unavailable]</div>
         </article>
         <article class="signal-card pollution-card">
           <div class="card-header"><div class="signal-title"><span class="signal-icon vegetation-icon">◒</span><div><div class="eyebrow">SIGNAL B</div><h3>Atmospheric pollution</h3></div></div><div class="metric"><span class="metric-value" id="pollutionMetric">—</span><span class="metric-unit">PM2.5 µg/m³</span></div></div>
           <div class="map-wrap"><div id="pollutionMap" class="signal-map" aria-label="Atmospheric pollution map"></div><div class="map-overlay"><span>POLLUTION INTENSITY</span><div class="gradient pollution-gradient"></div><div class="legend-labels"><span>lower</span><span>higher</span></div></div><div class="map-year" id="pollutionMapYear">2026</div></div>
           <div class="chart-wrap"><div class="chart-heading"><span>PM2.5 INDEX</span><span class="chart-current" id="pollutionChartValue">—</span></div><div class="chart-canvas"><canvas id="pollutionChart" data-pollution-api="https://air-quality-api.open-meteo.com/v1/air-quality"></canvas></div></div>
           <div class="slider-row"><span class="slider-year">2022</span><input id="pollutionYear" type="range" min="2022" max="2026" value="2026" aria-label="Pollution year" /><span class="slider-year" id="pollutionSliderYear">2026</span></div>
-          <div class="data-note">*Data before 2022 currently unavailable</div>
+          <div class="data-note">*[Data before 2022 currently unavailable]</div>
         </article>
       </section>
       <aside class="navigation-panel"><div class="eyebrow">NAVIGATION</div><a class="back-link" href="#"><span>←</span> Back to landing</a><div class="nav-divider"></div><div class="eyebrow">METRICS</div><nav class="graph-nav" aria-label="Metrics"><a href="temperature-ozone.html"><span class="nav-index">01</span><span>Temperature and Ozone</span><span>↗</span></a><a href="water-vegetation.html"><span class="nav-index">02</span><span>Water and Vegetation</span><span>↗</span></a><a href="aqi-pollution.html" class="active"><span class="nav-index">03</span><span>AQI and Pollution</span><span>↗</span></a></nav><div class="nav-footer"><span class="pulse-line"></span><span>EXPLORING <strong>03</strong> SIGNALS</span></div></aside>
