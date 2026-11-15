@@ -12,6 +12,10 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000`.
 
+## Project docs
+
+- [`ANALYSIS_AGENT_GUIDE.md`](./ANALYSIS_AGENT_GUIDE.md) — rules for building the analysis pipeline and using the processed data contract
+
 ## Data integration
 
 Set `DATA_URL` at the top of `app.js` to an external JSON endpoint. The endpoint should return the shape documented in [`sample-data.json`](./sample-data.json):
