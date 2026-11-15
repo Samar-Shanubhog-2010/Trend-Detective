@@ -192,8 +192,6 @@ function setTheme(isDark) {
 }
 async function init() {
   state.data = await loadData();
-  createMap("waterMap", "water", state.data.signals.water.locations);
-  createMap("vegetationMap", "vegetation", state.data.signals.vegetation.locations);
   createChart("waterChart", "water"); createChart("vegetationChart", "vegetation");
   bindSlider("water"); bindSlider("vegetation");
   setYear("water", 2026); setYear("vegetation", 2026);

@@ -32,7 +32,6 @@ function setTheme(isDark) {
   localStorage.setItem("trend-detective-theme", isDark ? "dark" : "light");
   Object.values(maps).forEach(({ map }) => setTimeout(() => map.invalidateSize(), 50));
 }
-createMap("tempMap", "temperature"); createMap("ozoneMap", "ozone");
 createChart("tempChart", "temperature"); createChart("ozoneChart", "ozone");
 $("tempYear").addEventListener("input", (event) => setYear("temperature", Number(event.target.value), "temp"));
 $("ozoneYear").addEventListener("input", (event) => setYear("ozone", Number(event.target.value), "ozone"));
