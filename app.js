@@ -196,8 +196,7 @@ async function init() {
   bindSlider("water"); bindSlider("vegetation");
   setYear("water", 2026); setYear("vegetation", 2026);
   const savedTheme = localStorage.getItem("trend-detective-theme");
-  setTheme(savedTheme ? savedTheme === "dark" : false);
+  setTheme(savedTheme ? savedTheme === "dark" : true);
   $("themeToggle").addEventListener("click", () => setTheme(!document.body.classList.contains("dark")));
-  $("backLink").addEventListener("click", (event) => { event.preventDefault(); showToast("Landing page integration is not available yet"); });
 }
 init();

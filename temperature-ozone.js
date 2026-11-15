@@ -36,6 +36,6 @@ createChart("tempChart", "temperature"); createChart("ozoneChart", "ozone");
 $("tempYear").addEventListener("input", (event) => setYear("temperature", Number(event.target.value), "temp"));
 $("ozoneYear").addEventListener("input", (event) => setYear("ozone", Number(event.target.value), "ozone"));
 setYear("temperature", 2026, "temp"); setYear("ozone", 2026, "ozone");
-setTheme(true);
+const savedTheme = localStorage.getItem("trend-detective-theme");
+setTheme(savedTheme ? savedTheme === "dark" : true);
 $("themeToggle").addEventListener("click", () => setTheme(!document.body.classList.contains("dark")));
-$("backLink").addEventListener("click", (event) => { event.preventDefault(); $("toast").textContent = "Landing page integration is not available yet"; $("toast").classList.add("visible"); setTimeout(() => $("toast").classList.remove("visible"), 3000); });
