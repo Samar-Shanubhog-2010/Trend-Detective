@@ -43,17 +43,16 @@
             </div>
             <div class="metric">
               <span class="metric-value" id="waterMetric">—</span>
-              <span class="metric-unit">% vs baseline</span>
+              <span class="metric-unit">mm / year</span>
             </div>
           </div>
           <div class="map-wrap">
-            <div id="waterMap" class="signal-map" aria-label="Water and rainfall levels map"></div>
-            <div class="map-overlay"><span>WATER AVAILABILITY</span><div class="gradient water-gradient"></div><div class="legend-labels"><span>lower</span><span>higher</span></div></div>
+            <img class="rainfall-image" src="https://www.nasa.gov/wp-content/uploads/2023/03/total_ozone_noaa-21_omps_noaa_first_light.png" alt="Ozone-measuring instrument on NOAA-21 satellite" />
             <div class="map-year" id="waterMapYear">2026</div>
           </div>
           <div class="chart-wrap">
-            <div class="chart-heading"><span>GLOBAL RAINFALL INDEX</span><span class="chart-current" id="waterChartValue">—</span></div>
-            <div class="chart-canvas"><canvas id="waterChart"></canvas></div>
+            <div class="chart-heading"><span>ANNUAL RAINFALL (MM)</span><span class="chart-current" id="waterChartValue">—</span></div>
+            <div class="chart-canvas"><canvas id="waterChart" data-rainfall-api="https://archive-api.open-meteo.com/v1/archive"></canvas></div>
           </div>
           <div class="slider-row">
             <span class="slider-year">1980</span><input id="waterYear" type="range" min="1980" max="2026" value="2026" step="1" aria-label="Water and rainfall year" /><span class="slider-year" id="waterSliderYear">2026</span>
@@ -68,17 +67,16 @@
             </div>
             <div class="metric">
               <span class="metric-value" id="vegetationMetric">—</span>
-              <span class="metric-unit">% vs baseline</span>
+              <span class="metric-unit">% of total land area</span>
             </div>
           </div>
           <div class="map-wrap">
-            <div id="vegetationMap" class="signal-map" aria-label="Forest and vegetation density map"></div>
-            <div class="map-overlay"><span>VEGETATION DENSITY</span><div class="gradient vegetation-gradient"></div><div class="legend-labels"><span>depleted</span><span>dense</span></div></div>
+            <img class="vegetation-image" src="https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/90000/90635/drylandforest_tamo_2015.png" alt="Measuring the Earth's dry forests" />
             <div class="map-year" id="vegetationMapYear">2026</div>
           </div>
           <div class="chart-wrap">
             <div class="chart-heading"><span>GLOBAL VEGETATION INDEX</span><span class="chart-current" id="vegetationChartValue">—</span></div>
-            <div class="chart-canvas"><canvas id="vegetationChart"></canvas></div>
+            <div class="chart-canvas"><canvas id="vegetationChart" data-vegetation-api="https://api.worldbank.org/v2/country/WLD/indicator/AG.LND.FRST.ZS"></canvas></div>
           </div>
           <div class="slider-row">
             <span class="slider-year">1980</span><input id="vegetationYear" type="range" min="1980" max="2026" value="2026" step="1" aria-label="Forest and vegetation year" /><span class="slider-year" id="vegetationSliderYear">2026</span>
@@ -102,6 +100,6 @@
     <div class="toast" id="toast" role="status"></div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=forest-area-complete-15"></script>
   </body>
 </html>
