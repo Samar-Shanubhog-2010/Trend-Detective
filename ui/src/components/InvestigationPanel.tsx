@@ -1,7 +1,9 @@
 import { useCallback, useState } from "react";
 import { ArrowUpRight, Orbit } from "lucide-react";
 import EnvironmentalIllustration from "@/components/EnvironmentalIllustration";
-import NasaImageGallery from "@/components/NasaImageGallery";
+import NasaImageGallery, {
+  type NasaGalleryImage,
+} from "@/components/NasaImageGallery";
 
 export interface InvestigationPanelData {
   id: string;
@@ -9,13 +11,7 @@ export interface InvestigationPanelData {
   title: string;
   description: string;
   kind: "temperature" | "water" | "air";
-  query: string;
-  images: {
-    src: string;
-    alt: string;
-    title: string;
-    nasaId: string;
-  }[];
+  images: NasaGalleryImage[];
 }
 
 const panelTheme = {
@@ -83,32 +79,14 @@ export default function InvestigationPanel({
 
         <div className="investigation-panel-art">
           <EnvironmentalIllustration kind={investigation.kind} />
-          <div className="panel-imagery" role="group" aria-label="NASA satellite images">
-            {investigation.images.map((image) => (
-              <a
-                className="panel-image-tile"
-                key={image.nasaId}
-                href={`https://images.nasa.gov/details/${image.nasaId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${image.title} — open NASA image details in a new tab`}
-              >
-                <img src={image.src} alt={image.alt} loading="lazy" />
-                <span className="panel-image-caption">
-                  <span>{image.title}</span>
-                  <ArrowUpRight size={14} aria-hidden="true" />
-                </span>
-              </a>
-            ))}
-          </div>
-          <span className="illustration-disclaimer">NASA SATELLITE IMAGERY</span>
+          <span className="illustration-disclaimer">ILLUSTRATIVE • NO LIVE DATA</span>
         </div>
       </article>
 
       {galleryOpen && (
         <NasaImageGallery
           title={investigation.title}
-          query={investigation.query}
+          images={investigation.images}
           onClose={closeGallery}
         />
       )}

@@ -491,77 +491,6 @@ footer[id] {
   padding: 0.5rem;
 }
 
-.panel-imagery {
-  position: absolute;
-  z-index: 3;
-  right: 3%;
-  bottom: 1.35rem;
-  display: grid;
-  width: min(78%, 390px);
-  height: 126px;
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-  gap: 0.55rem;
-}
-
-.panel-image-tile {
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.42);
-  border-radius: 14px;
-  background: rgba(2, 7, 17, 0.8);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.32);
-  isolation: isolate;
-  transition: transform 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
-}
-
-.panel-image-tile:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.8);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.4);
-}
-
-.panel-image-tile img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 600ms cubic-bezier(0.2, 0.75, 0.25, 1);
-}
-
-.panel-image-tile:hover img {
-  transform: scale(1.05);
-}
-
-.panel-image-caption {
-  position: absolute;
-  inset: auto 0 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 0.4rem;
-  background: linear-gradient(transparent, rgba(2, 7, 17, 0.94));
-  padding: 1.4rem 0.65rem 0.55rem;
-  color: #fff;
-  font-size: 0.58rem;
-  font-weight: 700;
-  line-height: 1.25;
-  text-shadow: 0 1px 5px rgba(0,0,0,0.8);
-}
-
-.panel-image-caption span {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.panel-image-caption svg {
-  flex: 0 0 auto;
-  margin-bottom: 1px;
-}
-
 .environment-visual {
   position: relative;
   width: min(100%, 510px);
@@ -1293,18 +1222,18 @@ footer[id] {
   min-height: 82px;
   align-items: center;
   gap: 1rem;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.35);
   border-radius: 18px;
-  background: linear-gradient(120deg, rgba(15,23,42,0.75), rgba(8,47,73,0.18));
+  background: var(--resource-fill);
   padding: 1rem 1.1rem;
-  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+  transition: transform 220ms ease, border-color 220ms ease, filter 220ms ease, box-shadow 220ms ease;
 }
 
 .science-resource:hover {
   transform: translateY(-2px);
   border-color: rgba(var(--resource-rgb), 0.62);
-  background: linear-gradient(120deg, rgba(var(--resource-rgb), 0.18), rgba(8,47,73,0.3));
-  box-shadow: 0 10px 28px rgba(var(--resource-rgb), 0.12);
+  filter: brightness(1.08);
+  box-shadow: 0 10px 28px rgba(var(--resource-rgb), 0.3);
 }
 
 .science-resource-title,
@@ -1318,10 +1247,10 @@ footer[id] {
   height: 38px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(var(--resource-rgb), 0.38);
+  border: 1px solid rgba(255,255,255,0.4);
   border-radius: 12px;
-  background: rgba(var(--resource-rgb), 0.14);
-  color: rgb(var(--resource-rgb));
+  background: rgba(255,255,255,0.14);
+  color: #fff;
   animation: science-icon-float 4s ease-in-out infinite;
 }
 
@@ -1345,10 +1274,10 @@ footer[id] {
 }
 
 .science-resource-title { color: #f8fafc; font-size: 0.84rem; font-weight: 600; }
-.science-resource-org { margin-top: 0.38rem; color: #cbd5e1; font-size: 0.65rem; }
+.science-resource-org { margin-top: 0.38rem; color: rgba(255,255,255,0.82); font-size: 0.65rem; }
 .science-resource-external {
   flex: 0 0 auto;
-  color: rgb(var(--resource-rgb));
+  color: #fff;
   transition: transform 220ms ease;
 }
 
@@ -1356,12 +1285,30 @@ footer[id] {
   transform: translate(2px, -2px);
 }
 
-.science-resource--temperature { --resource-rgb: 251, 113, 66; }
-.science-resource--ozone { --resource-rgb: 192, 132, 252; }
-.science-resource--water { --resource-rgb: 56, 189, 248; }
-.science-resource--vegetation { --resource-rgb: 74, 222, 128; }
-.science-resource--air { --resource-rgb: 103, 232, 249; }
-.science-resource--pollution { --resource-rgb: 251, 191, 36; }
+.science-resource--temperature {
+  --resource-rgb: 239, 68, 68;
+  --resource-fill: linear-gradient(135deg, #dc2626, #991b1b);
+}
+.science-resource--ozone {
+  --resource-rgb: 192, 132, 252;
+  --resource-fill: linear-gradient(135deg, #7c3aed, #5b21b6);
+}
+.science-resource--water {
+  --resource-rgb: 56, 189, 248;
+  --resource-fill: linear-gradient(135deg, #0369a1, #075985);
+}
+.science-resource--vegetation {
+  --resource-rgb: 74, 222, 128;
+  --resource-fill: linear-gradient(135deg, #15803d, #166534);
+}
+.science-resource--air {
+  --resource-rgb: 103, 232, 249;
+  --resource-fill: linear-gradient(135deg, #0e7490, #155e75);
+}
+.science-resource--pollution {
+  --resource-rgb: 251, 191, 36;
+  --resource-fill: linear-gradient(135deg, #b45309, #92400e);
+}
 
 @media (max-width: 767px) {
   .investigation-panel {
@@ -1373,13 +1320,6 @@ footer[id] {
 
   .investigation-panel-art {
     min-height: 250px;
-  }
-
-  .panel-imagery {
-    right: 2%;
-    bottom: 1.1rem;
-    width: min(82%, 390px);
-    height: 112px;
   }
 
   .environment-visual {
@@ -1420,17 +1360,6 @@ footer[id] {
   }
 
   .investigation-panel-art { padding: 0; }
-  .panel-imagery {
-    right: 0;
-    width: 88%;
-    height: 94px;
-  }
-
-  .panel-image-caption {
-    padding: 1.15rem 0.45rem 0.45rem;
-    font-size: 0.52rem;
-  }
-
   .thermal-label,
   .water-label,
   .air-label { font-size: 0.42rem; }

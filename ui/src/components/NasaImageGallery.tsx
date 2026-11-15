@@ -1,135 +1,32 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ExternalLink, LoaderCircle, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, X } from "lucide-react";
 
-interface NasaImage {
+export interface NasaGalleryImage {
   title: string;
   nasaId: string;
   imageUrl: string;
+  alt: string;
   description: string;
   credit: string;
   date: string;
-}
-
-interface NasaSearchItem {
-  data?: Array<{
-    title?: string;
-    nasa_id?: string;
-    description?: string;
-    photographer?: string;
-    center?: string;
-    date_created?: string;
-  }>;
-  links?: Array<{ href?: string; rel?: string; render?: string }>;
-}
-
-interface NasaSearchResponse {
-  collection?: { items?: NasaSearchItem[] };
+  sourceUrl: string;
 }
 
 interface NasaImageGalleryProps {
   title: string;
-  query: string;
+  images: NasaGalleryImage[];
   onClose: () => void;
-}
-
-function nasaAssetUrl(value: string | undefined) {
-  if (!value) return null;
-
-  try {
-    const url = new URL(value);
-    if (url.protocol === "https:" && url.hostname === "images-assets.nasa.gov") {
-      return url.href;
-    }
-  } catch {
-    return null;
-  }
-
-  return null;
-}
-
-function captionFor(description: string | undefined) {
-  const cleanDescription = description?.replace(/\s+/g, " ").trim();
-  if (!cleanDescription) return "NASA Earth observation imagery.";
-  if (cleanDescription.length <= 280) return cleanDescription;
-  return `${cleanDescription.slice(0, 277).trimEnd()}…`;
 }
 
 export default function NasaImageGallery({
   title,
-  query,
+  images,
   onClose,
 }: NasaImageGalleryProps) {
-  const [images, setImages] = useState<NasaImage[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [failedImageId, setFailedImageId] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function loadImages() {
-      try {
-        const params = new URLSearchParams({
-          q: query,
-          media_type: "image",
-          page_size: "12",
-        });
-        const response = await fetch(`https://images-api.nasa.gov/search?${params}`, {
-          signal: controller.signal,
-        });
-
-        if (!response.ok) {
-          throw new Error(`NASA Image and Video Library returned ${response.status}.`);
-        }
-
-        const result = (await response.json()) as NasaSearchResponse;
-        const records = (result.collection?.items ?? [])
-          .map((item) => {
-            const metadata = item.data?.[0];
-            const preview = nasaAssetUrl(
-              item.links?.find((link) => link.rel === "preview" || link.render === "image")?.href,
-            );
-            if (!metadata?.title || !preview) return null;
-
-            return {
-              title: metadata.title,
-              nasaId: metadata.nasa_id ?? metadata.title,
-              imageUrl: preview,
-              description: captionFor(metadata.description),
-              credit: metadata.photographer || metadata.center || "NASA",
-              date: metadata.date_created
-                ? new Date(metadata.date_created).toLocaleDateString(undefined, {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })
-                : "",
-            };
-          })
-          .filter((image): image is NasaImage => image !== null);
-
-        if (records.length === 0) {
-          throw new Error("NASA's image archive returned no usable images for this search.");
-        }
-
-        setImages(records);
-        setError(null);
-      } catch (caught) {
-        if (caught instanceof DOMException && caught.name === "AbortError") return;
-        setError(caught instanceof Error ? caught.message : "The NASA image gallery could not be loaded.");
-      } finally {
-        if (!controller.signal.aborted) setLoading(false);
-      }
-    }
-
-    void loadImages();
-
-    return () => {
-      controller.abort();
-    };
-  }, [query]);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -218,33 +115,28 @@ export default function NasaImageGallery({
           </button>
         </div>
 
-        {loading && (
-          <div className="gallery-state" role="status">
-            <LoaderCircle className="animate-spin" size={24} />
-            <span>Searching NASA’s image archive…</span>
-          </div>
-        )}
-
-        {!loading && error && (
+        {!activeImage && (
           <div className="gallery-state gallery-error" role="alert">
-            <p>{error}</p>
-            <p className="gallery-error-note">Check your connection and try opening this gallery again.</p>
+            <p>No NASA images are available for this topic.</p>
           </div>
         )}
 
-        {!loading && !error && activeImage && (
+        {activeImage && (
           <>
             <div className="gallery-image-wrap">
-              <img
-                key={activeImage.nasaId}
-                src={activeImage.imageUrl}
-                alt={activeImage.title}
-                className="gallery-image"
-                onError={(event) => {
-                  event.currentTarget.hidden = true;
-                  setError("A NASA image could not be loaded. Close the gallery and try again.");
-                }}
-              />
+              {failedImageId === activeImage.nasaId ? (
+                <div className="gallery-state gallery-error" role="alert">
+                  <p>This NASA image could not be loaded.</p>
+                </div>
+              ) : (
+                <img
+                  key={activeImage.nasaId}
+                  src={activeImage.imageUrl}
+                  alt={activeImage.alt}
+                  className="gallery-image"
+                  onError={() => setFailedImageId(activeImage.nasaId)}
+                />
+              )}
               <div className="gallery-image-count" aria-live="polite">
                 {activeIndex + 1} / {images.length}
               </div>
@@ -275,7 +167,7 @@ export default function NasaImageGallery({
                 <p className="gallery-credit">Image credit: {activeImage.credit} / NASA</p>
               </div>
               <a
-                href={activeImage.imageUrl}
+                href={activeImage.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="gallery-source-link"
