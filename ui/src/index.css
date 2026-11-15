@@ -459,12 +459,20 @@ footer[id] {
   line-height: 1.75;
 }
 
+.panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.7rem;
+}
+
+.dashboard-launch,
 .gallery-launch {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
   gap: 0.65rem;
-  margin-top: 1.7rem;
   border: 1px solid rgba(255,255,255,0.4);
   border-radius: 999px;
   background: rgba(7, 10, 18, 0.2);
@@ -473,10 +481,21 @@ footer[id] {
   font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.17em;
+  text-decoration: none;
   backdrop-filter: blur(8px);
   transition: transform 250ms ease, background 250ms ease, box-shadow 250ms ease;
 }
 
+.dashboard-launch {
+  background: linear-gradient(120deg, rgba(17,119,238,0.58), rgba(36,85,238,0.54));
+  border-color: rgba(191, 219, 254, 0.72);
+}
+
+.gallery-launch {
+  margin-top: 0;
+}
+
+.dashboard-launch:hover,
 .gallery-launch:hover {
   transform: translateY(-2px);
   background: rgba(255,255,255,0.14);

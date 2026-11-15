@@ -11,6 +11,7 @@ export interface InvestigationPanelData {
   title: string;
   description: string;
   kind: "temperature" | "water" | "air";
+  dashboardUrl: string;
   images: NasaGalleryImage[];
 }
 
@@ -67,14 +68,23 @@ export default function InvestigationPanel({
           </h3>
           <p className="investigation-description">{investigation.description}</p>
 
-          <button
-            type="button"
-            className="gallery-launch"
-            onClick={() => setGalleryOpen(true)}
-            aria-label={`Explore NASA images for ${investigation.title}`}
-          >
-            EXPLORE IMAGES <ArrowUpRight size={16} />
-          </button>
+          <div className="panel-actions">
+            <a
+              className="dashboard-launch"
+              href={investigation.dashboardUrl}
+              aria-label={`Open ${investigation.title} dashboard`}
+            >
+              OPEN DASHBOARD <ArrowUpRight size={16} />
+            </a>
+            <button
+              type="button"
+              className="gallery-launch"
+              onClick={() => setGalleryOpen(true)}
+              aria-label={`Explore NASA images for ${investigation.title}`}
+            >
+              EXPLORE IMAGES <ArrowUpRight size={16} />
+            </button>
+          </div>
         </div>
 
         <div className="investigation-panel-art">

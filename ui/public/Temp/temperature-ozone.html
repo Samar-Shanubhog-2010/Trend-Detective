@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Temperature and ozone climate signals dashboard" />
+    <title>Trend Detective | Temperature and Ozone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-meta"><span class="live-dot"></span><span>LIVE SIGNAL MONITOR</span></div>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Switch to dark contrast theme" aria-pressed="false">◐</button>
+    </header>
+    <main class="dashboard-shell">
+      <aside class="context-panel">
+        <div class="eyebrow">CLIMATE WATCH</div>
+        <h1>Reading the<br /><em>planet's pulse.</em></h1>
+        <p class="intro">A focused view of two atmospheric signals changing the shape of our future.</p>
+        <div class="context-divider"></div>
+        <div class="info-block">
+          <div class="eyebrow">WHAT THIS PAGE FETCHES</div>
+          <p>Annual temperature anomalies, day and night warming trends, ozone health index, district metadata, anomaly trends, and local climate insight summaries for any place you select.</p>
+        </div>
+        <div class="info-block">
+          <div class="eyebrow">WHY IT MATTERS</div>
+          <p>Temperature and ozone together reveal how the atmosphere responds to greenhouse forcing, seasonal variability, and recovery cycles across the globe.</p>
+        </div>
+      </aside>
+
+      <section class="visuals">
+        <div class="content-heading"><div><div class="eyebrow">TEMPERATURE + OZONE / GLOBAL VIEW</div><h2>Two stories, <span>one atmosphere.</span></h2></div></div>
+
+        <div class="district-filter-panel">
+          <div class="district-filter-header">
+            <div>
+              <div class="eyebrow">DISTRICT DRILL-DOWN</div>
+              <h3>Focus a location</h3>
+            </div>
+            <div class="district-badges">
+              <span class="badge-status">LIVE API</span>
+            </div>
+          </div>
+          <div class="district-controls">
+            <label class="district-label" for="districtInput">District</label>
+            <input id="districtInput" list="districtPresetList" value="Hyderabad" placeholder="Type a district or city" autocomplete="off" />
+            <datalist id="districtPresetList">
+              <option value="Hyderabad"></option>
+              <option value="Delhi"></option>
+              <option value="Bengaluru"></option>
+              <option value="Mumbai"></option>
+              <option value="Chennai"></option>
+              <option value="Paris"></option>
+              <option value="Tokyo"></option>
+              <option value="Global"></option>
+            </datalist>
+            <button id="districtApplyBtn" type="button">Apply</button>
+          </div>
+          <div class="district-suggestions" id="districtSuggestions" aria-live="polite"></div>
+          <div class="district-summary" id="districtSummary">Global baseline view. Select a district to drill into local trend, anomalies, and map focus.</div>
+        </div>
+
+        <div class="district-insight-panel">
+          <div class="insight-grid">
+            <div class="mini-insight-card">
+              <div class="eyebrow">WARMEST YEAR</div>
+              <div class="insight-value" id="warmestYearValue">—</div>
+            </div>
+            <div class="mini-insight-card">
+              <div class="eyebrow">LATEST ANOMALY</div>
+              <div class="insight-value" id="anomalyValue">—</div>
+            </div>
+            <div class="mini-insight-card">
+              <div class="eyebrow">TREND</div>
+              <div class="insight-value" id="trendValue">—</div>
+            </div>
+            <div class="mini-insight-card">
+              <div class="eyebrow">VS GLOBAL</div>
+              <div class="insight-value" id="compareValue">—</div>
+            </div>
+          </div>
+          <ul class="insight-list" id="districtInsightList"></ul>
+        </div>
+
+        <div class="ux-summary-panel">
+          <div class="ux-summary-header">
+            <div>
+              <div class="eyebrow">LIVE CLIMATE CONTEXT</div>
+              <h3>What is being processed</h3>
+            </div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-card">
+              <span class="summary-label">Annual temperature</span>
+              <strong>Day + night anomalies</strong>
+            </div>
+            <div class="summary-card">
+              <span class="summary-label">Ozone signal</span>
+              <strong>Stratospheric health index</strong>
+            </div>
+            <div class="summary-card">
+              <span class="summary-label">District analysis</span>
+              <strong>Trend, anomaly, and comparison</strong>
+            </div>
+            <div class="summary-card highlight">
+              <span class="summary-label">Source layer</span>
+              <strong>NASA-style climate archive + local API</strong>
+            </div>
+          </div>
+        </div>
+
+        <article class="signal-card water-card">
+          <div class="card-header"><div class="signal-title"><span class="signal-icon water-icon">✳</span><div><div class="eyebrow">SIGNAL A</div><h3>Surface temperature</h3></div></div><div class="metric"><span class="metric-value" id="tempMetric">—</span><span class="metric-unit">°C vs baseline</span></div></div>
+          <div class="map-wrap map-with-controls">
+            <div class="map-toolbar">
+              <span class="map-toolbar-label">WORLD MAP</span>
+              <button id="tempMapModeToggle" type="button" class="map-toggle-btn">Night view</button>
+            </div>
+            <div id="tempMap" class="signal-map" aria-label="Surface temperature anomaly map"></div>
+            <div class="map-overlay"><span>ANOMALY INTENSITY</span><div class="gradient water-gradient"></div><div class="legend-labels"><span>cooler</span><span>warmer</span></div></div>
+            <div class="map-year" id="tempMapYear">2026</div>
+          </div>
+          <div class="chart-wrap"><div class="chart-heading"><span>GLOBAL ANNUAL ANOMALY</span><span class="chart-current" id="tempChartValue">—</span></div><div class="chart-canvas"><canvas id="tempChart"></canvas></div></div>
+          <div class="slider-row"><span class="slider-year">1980</span><input id="tempYear" type="range" min="1980" max="2026" value="2026" aria-label="Temperature year" /><span class="slider-year" id="tempSliderYear">2026</span></div>
+        </article>
+
+        <article class="signal-card vegetation-card">
+          <div class="card-header"><div class="signal-title"><span class="signal-icon vegetation-icon">◌</span><div><div class="eyebrow">SIGNAL B</div><h3>Stratospheric ozone</h3></div></div><div class="metric"><span class="metric-value" id="ozoneMetric">—</span><span class="metric-unit">% vs baseline</span></div></div>
+          <div class="map-wrap map-with-controls">
+            <div class="map-toolbar">
+              <span class="map-toolbar-label">WORLD MAP</span>
+            </div>
+            <div id="ozoneMap" class="signal-map" aria-label="Stratospheric ozone depletion map"></div>
+            <div class="map-overlay"><span>DEPLETION INTENSITY</span><div class="gradient vegetation-gradient"></div><div class="legend-labels"><span>stable</span><span>depleted</span></div></div>
+            <div class="map-year" id="ozoneMapYear">2026</div>
+          </div>
+          <div class="chart-wrap"><div class="chart-heading"><span>GLOBAL OZONE INDEX</span><span class="chart-current" id="ozoneChartValue">—</span></div><div class="chart-canvas"><canvas id="ozoneChart"></canvas></div></div>
+          <div class="slider-row"><span class="slider-year">1980</span><input id="ozoneYear" type="range" min="1980" max="2026" value="2026" aria-label="Ozone year" /><span class="slider-year" id="ozoneSliderYear">2026</span></div>
+        </article>
+
+        <article class="signal-card extra-charts-card">
+          <div class="card-header">
+            <div class="signal-title">
+              <span class="signal-icon water-icon">▣</span>
+              <div>
+                <div class="eyebrow">TEMPERATURE + OZONE INSIGHTS</div>
+                <h3>More climate views</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-panel">
+              <div class="mini-title">Day vs night temperature</div>
+              <div class="mini-chart-wrap"><canvas id="dayNightChart"></canvas></div>
+            </div>
+            <div class="mini-panel">
+              <div class="mini-title">Trend drivers</div>
+              <div class="mini-chart-wrap"><canvas id="warmingDriversChart"></canvas></div>
+            </div>
+            <div class="mini-panel mini-panel-wide">
+              <div class="mini-title">Atmospheric recovery index</div>
+              <div class="mini-chart-wrap"><canvas id="ozoneTrendChart"></canvas></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="signal-card context-card">
+          <div class="card-header">
+            <div class="signal-title">
+              <span class="signal-icon vegetation-icon">◎</span>
+              <div>
+                <div class="eyebrow">CLIMATE DRIVERS</div>
+                <h3>Why warming or cooling can happen</h3>
+              </div>
+            </div>
+          </div>
+          <div class="reason-grid" id="climateCauseGrid"></div>
+        </article>
+      </section>
+
+      <aside class="navigation-panel">
+        <div class="eyebrow">NAVIGATION</div><a class="back-link" href="#" id="backLink"><span>←</span> Back to landing</a><div class="nav-divider"></div><div class="eyebrow">METRICS</div>
+        <nav class="graph-nav" aria-label="Metrics"><a href="temperature-ozone.html" class="active"><span class="nav-index">01</span><span>Temperature and Ozone</span><span>↗</span></a><a href="../water-vegetation.html"><span class="nav-index">02</span><span>Water and Vegetation</span><span>↗</span></a><a href="../aqi-pollution.html"><span class="nav-index">03</span><span>AQI and Pollution</span><span>↗</span></a></nav>
+        <div class="nav-footer"><span class="pulse-line"></span><span>EXPLORING <strong>03</strong> SIGNALS</span></div>
+      </aside>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="temperature-ozone.js"></script>
+  </body>
+</html>
