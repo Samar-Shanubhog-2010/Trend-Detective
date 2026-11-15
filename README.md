@@ -15,6 +15,7 @@ Then open `http://localhost:8000`.
 ## Project docs
 
 - [`ANALYSIS_AGENT_GUIDE.md`](./ANALYSIS_AGENT_GUIDE.md) — rules for building the analysis pipeline and using the processed data contract
+- [`Temp/TEMPERATURE_OZONE_WORKFLOW.md`](./Temp/TEMPERATURE_OZONE_WORKFLOW.md) — explanation of the temperature + ozone dashboard architecture, data flow, and chart logic
 
 ## Data integration
 
