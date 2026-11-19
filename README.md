@@ -37,6 +37,18 @@ Set `DATA_URL` at the top of `app.js` to an external JSON endpoint. The endpoint
 
 The loader validates the response and falls back to the bundled sample data when the external request fails.
 
+## AI trend assistant
+
+The global assistant is loaded on every dashboard page. It uses fixed FAQ answers for common starter questions and calls OpenRouter only for new questions.
+
+Set this environment variable in Vercel or your local server environment:
+
+```bash
+OPENROUTER_API_KEY=your_key
+```
+
+Then deploy with the configured model `deepseek/deepseek-v4.1-flash-1017`. The key remains server-side in [`api/chat.js`](./api/chat.js); never add it to HTML or JavaScript files.
+
 ## CDN dependencies
 
 - [Leaflet 1.9.4](https://unpkg.com/leaflet@1.9.4/dist/leaflet.js) for interactive maps
