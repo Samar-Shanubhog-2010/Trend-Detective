@@ -7,10 +7,14 @@ An interactive climate signal dashboard built with HTML5, CSS Grid/Flexbox, and 
 Serve this directory over HTTP (the browser blocks `fetch()` for local `file://` URLs):
 
 ```bash
-python3 -m http.server 8000
+node dev-server.js
 ```
 
 Then open `http://localhost:8000`.
+
+The local Node server loads `OPENROUTER_API_KEY` from `.env`, so `/api/chat`
+works without Vercel or deployment configuration. Keep `.env` uncommitted and
+rotated if it has been shared or exposed.
 
 ## Data integration
 
